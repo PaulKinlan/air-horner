@@ -228,7 +228,7 @@ class AirHorner extends HTMLElement {
 var Horn = function() {
   // The Horn Player.
 
-  var audioSrc = '/sounds/airhorn.mp3';
+  var audioSrc = './sounds/airhorn.mp3';
   var noAudioContext = false;
   var fallbackAudio;
   var audioCtx = (window.AudioContext || window.webkitAudioContext);
