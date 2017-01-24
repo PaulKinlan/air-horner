@@ -1,0 +1,16 @@
+{
+  "name": "air-horner",
+  "license": "Apache-2.0",
+  "authors": [
+    "Paul Kinlan <paul.kinlan@gmail.com>"
+  ],
+  "keywords": [
+    "web-components",
+    "custom-element",
+    "vanilla-js"
+  ],
+  "main": [
+    "air-horner.js",
+    "air-horner.html"
+  ]
+}
