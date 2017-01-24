@@ -1,10 +1,6 @@
-# Share Button
+# Air Horner
 
-The Share Button web component provides a simple and customizable interface for
-sharing URLs.
-
-* Add customizable buttons for you preferred providers
-
+Air horn to your hearts content.
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
 
@@ -12,7 +8,7 @@ sharing URLs.
 ```
 <custom-element-demo>
   <template>
-    <link rel="import" href="twitter-share-button.html">
+    <link rel="import" href="air-horner.html">
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
@@ -20,29 +16,19 @@ sharing URLs.
 -->
 ```html
 
-<share-button></share-button>
+<air-horner></air-horner>
 ```
 
-## Customise the button UI
+## FAQ
 
-Any element hosted in the custom element that does not have a `slot` attribute
-of `buttons` will be used in the display of the share-button
+### Is it possible to style the airhorn?
+Not yet.
 
-    <share-button>
-      Share
-    </share-button>
+### Is it possible to change the horn sound?
+Not yet.
 
-    
-## Add a custom share button
+### Can you change the loop point?
+Not yet.
 
-Custom share buttons can be positionined inside the share button by applying 
-the slot="buttons" attribute to the element.
-
-    <share-button>
-      <button slot="buttons">Twitter</button>
-      <button slot="buttons">Fb</button>
-      <button slot="buttons">WhatsApp</button>
-      <button slot="buttons">G+</button>
-    </share-button>
-
-You are in control of the actions that the user takes on these elements.
+### Can it do anything else?
+Not yet.
