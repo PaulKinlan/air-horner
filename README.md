@@ -93,7 +93,7 @@ a good loop point is left to the reader ;)
 ```
 -->
 ```html
-<air-horner src="sounds/yo.mp3" loopStart="1.076" loopEnd="1.263"></air-horner>
+<air-horner src="test/sounds/yo.mp3" loopStart="0.616" loopEnd="1.078"></air-horner>
 ```
 
 By default the `airhorn.mp3` is used.
