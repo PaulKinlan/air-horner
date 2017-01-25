@@ -41,7 +41,15 @@ The :host is an `inline-block` element that has a default dimensions of 100px x
 Not yet.
 
 ### Is it possible to change the horn sound?
-Not yet.
+Yes. You can change the src attribute on the element. Note, if you want the
+audio to loop you need to define a `loopStart` and `loopEnd` attribute. Finding
+a good loop point is left to the reader ;)
+
+```html
+<air-horner src="sounds/yo.mp3" loopStart="1.076" loopEnd="1.263"></air-horner>
+```
+
+By default the `airhorn.mp3` is used.
 
 ### Can you change the loop point?
 Not yet.
