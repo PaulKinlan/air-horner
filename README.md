@@ -45,6 +45,24 @@ The :host is an `inline-block` element that has a default dimensions of 100px x
 <air-horner></air-horner>
 ```
 
+### Can I horn without the user interaction?
+Yes. The element exposes a couple of properties and methods that you can use to
+interact with the `<air-horner>` element.
+
+
+#### Methods
+
+* element.`start()`
+* element.`stop()`
+
+#### Attributes 
+
+All attributes are managed as DOM Attributes, updating the value on the object
+will update it on the element and likewise from the DOM Element to the object.
+
+* `src` &mdash; A reference to the media element that will be played.
+* `loopStart` &mdash; The start point for the looping in SS.MMMM format 
+* `loopEnd` &mdash; The end point for the looping in SS.MMMM format 
 
 ### Is it possible to style the airhorn?
 Not yet.
