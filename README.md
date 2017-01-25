@@ -35,6 +35,16 @@ The element name is already defined in the script as `<air-horner>`.
 The :host is an `inline-block` element that has a default dimensions of 100px x
 100px. You can override this by specifiying your own width and height.
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="air-horner.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <style>
   air-horner {
@@ -72,6 +82,16 @@ Yes. You can change the src attribute on the element. Note, if you want the
 audio to loop you need to define a `loopStart` and `loopEnd` attribute. Finding
 a good loop point is left to the reader ;)
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="air-horner.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <air-horner src="sounds/yo.mp3" loopStart="1.076" loopEnd="1.263"></air-horner>
 ```
