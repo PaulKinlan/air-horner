@@ -21,6 +21,15 @@ Air horn to your hearts content.
 
 ## FAQ
 
+### How do I include this?
+
+There are two ways.
+
+1. `<link rel="import" href="air-horner.html">`
+2. `<script src="air-horner.js"></script>` &mdash; my preferred method.
+
+The element name is already defined in the script as `<air-horner>`.
+
 ### How can I change the height and width?
 
 The :host is an `inline-block` element that has a default dimensions of 100px x
