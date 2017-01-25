@@ -21,6 +21,22 @@ Air horn to your hearts content.
 
 ## FAQ
 
+### How can I change the height and width?
+
+The :host is an `inline-block` element that has a default dimensions of 100px x
+100px. You can override this by specifiying your own width and height.
+
+```html
+<style>
+  air-horner {
+    width: 300px;
+    height: 300px;
+  }
+</style>
+<air-horner></air-horner>
+```
+
+
 ### Is it possible to style the airhorn?
 Not yet.
 
