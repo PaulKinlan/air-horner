@@ -177,16 +177,27 @@ class AirHorner extends HTMLElement {
     }
   }
 
+  connectedCallback() {
+    this._horn = new Horn(this.src);
+  }
+
   constructor() {
     super();
 
     const root = this.attachShadow({mode:'open'});
     root.appendChild(this.template.content.cloneNode(true));
 
-    this._horn = new Horn();
+    
     this._hornHost = root.querySelector(".horn");
 
     const startHandler = (e) => {
+      const hornOptions = {
+        loop: true,
+        loopStart: this.loopStart,
+        loopEnd: this.loopEnd,
+        src: this.src
+      };
+
       if(!!e == true) {
         e.preventDefault();
 
@@ -196,7 +207,7 @@ class AirHorner extends HTMLElement {
         }
       }
 
-      this.start({loop: true});
+      this.start(hornOptions);
     };
 
     const stopHandler = (e) => {
@@ -223,13 +234,48 @@ class AirHorner extends HTMLElement {
     this._hornHost.classList.remove('horning');
     this._horn.stop();
   }
+
+  get src() {
+    return this.getAttribute('src');
+  }
+
+  set src(val) {
+    if(val) {
+      this.setAttribute('src', val);
+    } else {
+      this.removeAttribute('src');
+    }
+  }
+
+  get loopStart() {
+    return this.getAttribute('loopStart');
+  }
+
+  set loopStart(val) {
+    if(val) {
+      this.setAttribute('loopStart', val);
+    } else {
+      this.removeAttribute('loopStart');
+    }
+  }
+
+  get loopEnd() {
+    return this.getAttribute('loopEnd');
+  }
+
+  set loopEnd(val) {
+    if(val) {
+      this.setAttribute('loopEnd', val);
+    } else {
+      this.removeAttribute('loopEnd');
+    }
+  }
 }
 
-var Horn = function() {
+var Horn = function(src) {
   // The Horn Player.
-
-  var audioSrc = './sounds/airhorn.mp3';
   var noAudioContext = false;
+  var defaultAudioSrc = './sounds/airhorn.mp3';
   var fallbackAudio;
   var audioCtx = (window.AudioContext || window.webkitAudioContext);
   var self = this;
@@ -243,11 +289,11 @@ var Horn = function() {
     fallbackAudio = document.createElement('audio');
   }
 
-  var loadSound = function(callback) {
+  var loadSound = function(callback, src) {
     callback = callback || function() {};
 
     if (noAudioContext) {
-      fallbackAudio.src = audioSrc;
+      fallbackAudio.src = src;
       return;
     }
 
@@ -265,7 +311,7 @@ var Horn = function() {
       });
     };
 
-    xhr.open('GET', audioSrc);
+    xhr.open('GET', src);
     xhr.responseType = 'arraybuffer';
     xhr.send();
   };
@@ -273,6 +319,9 @@ var Horn = function() {
 
   this.start = function(opts) {
     var shouldLoop = opts.loop; // always loop if from an event.
+    var loopStart = opts.loopStart || 0.24;
+    var loopEnd = opts.loopEnd || 0.34;
+    var src = opts.src || './sounds/airhorn.mp3';
 
     if (noAudioContext) {
       fallbackAudio.loop = shouldLoop;
@@ -281,7 +330,7 @@ var Horn = function() {
       return;
     }
 
-    loadSound(function(tmpBuffer) {
+    loadSound(tmpBuffer => {
       source = audioCtx.createBufferSource();
 
       source.connect(audioCtx.destination);
@@ -294,10 +343,10 @@ var Horn = function() {
 
       source.start(0);
       source.loop = shouldLoop;
-      source.loopStart = 0.24;
-      source.loopEnd = 0.34;
+      source.loopStart = loopStart;
+      source.loopEnd = loopEnd;
 
-    });
+    }, src);
   };
 
   this.stop = function() {
@@ -314,14 +363,14 @@ var Horn = function() {
 
   this.onstopped = function() {};
 
-  var init = function() {
+  var init = function(src) {
 
     loadSound(function(decodedBuffer) {
       buffer = decodedBuffer;
-    });
+    }, src);
   };
 
-  init();
+  init(src || defaultAudioSrc);
 
 };
 
