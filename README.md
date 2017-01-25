@@ -61,7 +61,8 @@ a good loop point is left to the reader ;)
 By default the `airhorn.mp3` is used.
 
 ### Can you change the loop point?
-Not yet.
+Yes. By setting the `loopStart` and `loopEnd` attributes you can control where
+the looping occurs. Be careful though, you need to be careful of audio clipping.
 
 ### Can it do anything else?
 Not yet.
