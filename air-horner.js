@@ -105,7 +105,7 @@ class AirHorner extends HTMLElement {
     background-color: #F44336;
     box-shadow: 0 2px 2px 0 #000;
     -webkit-transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1);
-    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1)
+    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1);
 }
 .horn,
 .horn .inner {
@@ -165,11 +165,13 @@ class AirHorner extends HTMLElement {
       let body = document.createElement('div');
       body.id = 'airhorn';
       body.innerHTML = `
+      <slot>
         <div class='horn'>
           <div class='inner'>
             <div class='center'></div>
           </div>
-        </div>`;
+        </div>
+      <slot>`;
       this._template.content.appendChild(styles);
       this._template.content.appendChild(body);
       
@@ -186,8 +188,7 @@ class AirHorner extends HTMLElement {
 
     const root = this.attachShadow({mode:'open'});
     root.appendChild(this.template.content.cloneNode(true));
-
-    
+   
     this._hornHost = root.querySelector(".horn");
 
     const startHandler = (e) => {
@@ -223,14 +224,19 @@ class AirHorner extends HTMLElement {
   }
 
   start(hornParams) {
+    // Add to the element for slots
+    this.classList.add('horning');
+    // Add to the host for shadowDOM
     this._hornHost.classList.add('horning');
     this._horn.start(hornParams || {loop: false}) ;
     this._horn.onstopped = () => {
+      this.classList.remove('horning');
       this._hornHost.classList.remove('horning');
     };
   }
 
   stop() {
+    this.classList.remove('horning');
     this._hornHost.classList.remove('horning');
     this._horn.stop();
   }
