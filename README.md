@@ -75,7 +75,62 @@ will update it on the element and likewise from the DOM Element to the object.
 * `loopEnd` &mdash; The end point for the looping in SS.MMMM format 
 
 ### Is it possible to style the airhorn?
-Not yet.
+Yes and no. There are no styling extension for the default airhorn elements
+in the ShadowDOM. You do have the ability to provide your own element using
+`<slot>` projection.
+
+When the element is in `horning` state, a class name of `horning` will be 
+applied to the root of the element.
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="air-horner.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<air-horner id="jakehorner" src="test/sounds/yo.mp3" 
+            loopStart="0.616" loopEnd="1.078" style="display:block;">
+ <style>
+  .head .face, .head .mouth {
+    position:absolute;
+  }
+
+  .head {
+    position: relative;
+  }
+
+  @keyframes jaking {
+    0% {
+      transform: translate(0, 8px);
+    }
+    100% {
+      transform: translate(0, 12px);
+    }
+  }
+
+  #jakehorner.horning .mouth {
+    animation-name: jaking;
+    -webkit-animation-name: jaking;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    animation-duration: 10ms;
+    animation-delay: 200ms;
+    transform: translate(0, 10px) .2s cubic-bezier(.4, 0, 1, 1);
+  }
+ </style>
+ <div class="head">
+  <img class="face" src="test/images/jakehead.png">
+  <img class="mouth" src="test/images/jakemouth.png">
+ </div>
+</air-horner>
+```
 
 ### Is it possible to change the horn sound?
 Yes. You can change the src attribute on the element. Note, if you want the
