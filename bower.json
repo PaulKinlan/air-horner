@@ -12,5 +12,6 @@
   "main": [
     "air-horner.js",
     "air-horner.html"
-  ]
+  ],
+  "version": "0.4.2"
 }
